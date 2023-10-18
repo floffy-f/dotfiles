@@ -1,0 +1,8 @@
+#!/bin/bash
+sessions="$(zellij ls)"
+if [ $(echo "$sessions" | wc -l) -eq 1 ]
+then
+	printf $sessions
+else
+	zellij ls | rofi -dmenu -multi-select | xargs -I{} echo {}
+fi
