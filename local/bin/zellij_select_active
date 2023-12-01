@@ -1,2 +1,6 @@
 #!/usr/bin/bash
-zellij_select_session | sed -n '/EXITED/!p'
+IN=$(zellij_select_session)
+if [ $(zellij ls | grep $IN | wc -l) -ge 1 ]
+then
+	echo $IN
+fi
