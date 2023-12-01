@@ -23,33 +23,34 @@ set $mod Mod1
 # ZELLIJ
 # ##############################
 set $modZ Mod4
+set $zact zellij -s $(zellij_select_active)
 
 # Kill pane/tab
-bindsym $modZ+q exec zellij -s $(zellij_select_session) ac close-pane && pkill -f "ac close-pane"
-bindsym $modZ+Shift+q exec zellij -s $(zellij_select_session) ac close-tab && pkill -f "ac close-tab"
-bindsym $modZ+Escape exec zellij kill-session $(zellij_select_session)
+bindsym $modZ+q exec $zact ac close-pane && pkill -f "ac close-pane"
+bindsym $modZ+Shift+q exec $zact ac close-tab && pkill -f "ac close-tab"
+bindsym $modZ+Escape exec zellij_select_session | zellij_kill_session
 # Move focus
-bindsym $modZ+Left exec zellij -s $(zellij_select_session) ac move-focus-or-tab left
-bindsym $modZ+h exec zellij -s $(zellij_select_session) ac move-focus-or-tab left
-bindsym $modZ+Right exec zellij -s $(zellij_select_session) ac move-focus-or-tab right
-bindsym $modZ+l exec zellij -s $(zellij_select_session) ac move-focus-or-tab right
-bindsym $modZ+Up exec zellij -s $(zellij_select_session) ac move-focus-or-tab up
-bindsym $modZ+k exec zellij -s $(zellij_select_session) ac move-focus-or-tab up
-bindsym $modZ+Down exec zellij -s $(zellij_select_session) ac move-focus-or-tab down
-bindsym $modZ+j exec zellij -s $(zellij_select_session) ac move-focus-or-tab down
+bindsym $modZ+Left exec $zact ac move-focus-or-tab left
+bindsym $modZ+h exec $zact ac move-focus-or-tab left
+bindsym $modZ+Right exec $zact ac move-focus-or-tab right
+bindsym $modZ+l exec $zact ac move-focus-or-tab right
+bindsym $modZ+Up exec $zact ac move-focus-or-tab up
+bindsym $modZ+k exec $zact ac move-focus-or-tab up
+bindsym $modZ+Down exec $zact ac move-focus-or-tab down
+bindsym $modZ+j exec $zact ac move-focus-or-tab down
 # Move pane
-bindsym $modZ+Shift+Left exec zellij -s $(zellij_select_session) ac move-pane left
-bindsym $modZ+Shift+h exec zellij -s $(zellij_select_session) ac move-pane left
-bindsym $modZ+Shift+Right exec zellij -s $(zellij_select_session) ac move-pane right
-bindsym $modZ+Shift+l exec zellij -s $(zellij_select_session) ac move-pane right
-bindsym $modZ+Shift+Up exec zellij -s $(zellij_select_session) ac move-pane up
-bindsym $modZ+Shift+k exec zellij -s $(zellij_select_session) ac move-pane up
-bindsym $modZ+Shift+Down exec zellij -s $(zellij_select_session) ac move-pane down
-bindsym $modZ+Shift+j exec zellij -s $(zellij_select_session) ac move-pane down
+bindsym $modZ+Shift+Left exec $zact ac move-pane left
+bindsym $modZ+Shift+h exec $zact ac move-pane left
+bindsym $modZ+Shift+Right exec $zact ac move-pane right
+bindsym $modZ+Shift+l exec $zact ac move-pane right
+bindsym $modZ+Shift+Up exec $zact ac move-pane up
+bindsym $modZ+Shift+k exec $zact ac move-pane up
+bindsym $modZ+Shift+Down exec $zact ac move-pane down
+bindsym $modZ+Shift+j exec $zact ac move-pane down
 
 # Create tabs and panes
-bindsym $modZ+Return exec zellij -s $(zellij_select_session) ac new-pane
-bindsym $modZ+Shift+Return exec zellij -s $(zellij_select_session) ac new-tab
+bindsym $modZ+Return exec $zact ac new-pane
+bindsym $modZ+Shift+Return exec $zact ac new-tab
 
 # Resize panes
 mode "resize-zellij" {
@@ -59,26 +60,26 @@ mode "resize-zellij" {
 		# Pressing right will grow the pane’s width.
 		# Pressing up will shrink the pane’s height.
 		# Pressing down will grow the pane’s height.
-		bindsym j exec zellij -s $(zellij_select_session) ac resize increase left
-		bindsym k exec zellij -s $(zellij_select_session) ac resize increase up
-		bindsym l exec zellij -s $(zellij_select_session) ac resize increase down
-		bindsym m exec zellij -s $(zellij_select_session) ac resize increase right
+		bindsym j exec $zact ac resize increase left
+		bindsym k exec $zact ac resize increase up
+		bindsym l exec $zact ac resize increase down
+		bindsym m exec $zact ac resize increase right
 
 		# same bindings, but for the arrow keys
-		bindsym Left  exec zellij -s $(zellij_select_session) ac resize increase left
-		bindsym Down  exec zellij -s $(zellij_select_session) ac resize increase up
-		bindsym Up    exec zellij -s $(zellij_select_session) ac resize increase down
-		bindsym Right exec zellij -s $(zellij_select_session) ac resize increase right
+		bindsym Left  exec $zact ac resize increase left
+		bindsym Down  exec $zact ac resize increase up
+		bindsym Up    exec $zact ac resize increase down
+		bindsym Right exec $zact ac resize increase right
 
 		# Shift to decrease size
-		bindsym Shift+j exec zellij -s $(zellij_select_session) ac resize decrease left
-		bindsym Shift+k exec zellij -s $(zellij_select_session) ac resize decrease up
-		bindsym Shift+l exec zellij -s $(zellij_select_session) ac resize decrease down
-		bindsym Shift+m exec zellij -s $(zellij_select_session) ac resize decrease right
-		bindsym Shift+Left  exec zellij -s $(zellij_select_session) ac resize decrease left
-		bindsym Shift+Down  exec zellij -s $(zellij_select_session) ac resize decrease up
-		bindsym Shift+Up    exec zellij -s $(zellij_select_session) ac resize decrease down
-		bindsym Shift+Right exec zellij -s $(zellij_select_session) ac resize decrease right
+		bindsym Shift+j exec $zact ac resize decrease left
+		bindsym Shift+k exec $zact ac resize decrease up
+		bindsym Shift+l exec $zact ac resize decrease down
+		bindsym Shift+m exec $zact ac resize decrease right
+		bindsym Shift+Left  exec $zact ac resize decrease left
+		bindsym Shift+Down  exec $zact ac resize decrease up
+		bindsym Shift+Up    exec $zact ac resize decrease down
+		bindsym Shift+Right exec $zact ac resize decrease right
 
 		# back to normal: Enter or Escape or $mod+r
 		bindsym Return mode "default"
@@ -88,16 +89,16 @@ mode "resize-zellij" {
 bindsym $modZ+r mode "resize-zellij"
 
 # Launch command
-bindsym $modZ+d exec rofi -show run -run-command "zellij -s $(zellij_select_session) run -f -c -- {cmd}"
-bindsym $modZ+Shift+d exec rofi -show run -run-command "zellij -s $(zellij_select_session) run -f -c -- {cmd}"
+bindsym $modZ+d exec rofi -show run -run-command "$zact run -f -c -- {cmd}"
+bindsym $modZ+Shift+d exec rofi -show run -run-command "$zact run -f -c -- {cmd}"
 
 # Modes
-bindsym $modZ+p exec zellij -s $(zellij_select_session) ac switch-mode pane
-bindsym $modZ+t exec zellij -s $(zellij_select_session) ac switch-mode tab
-bindsym $modZ+m exec zellij -s $(zellij_select_session) ac switch-mode move
-bindsym $modZ+s exec zellij -s $(zellij_select_session) ac switch-mode search
-bindsym $modZ+o exec zellij -s $(zellij_select_session) ac switch-mode session
-bindsym $modZ+g exec zellij -s $(zellij_select_session) ac switch-mode locked
+bindsym $modZ+p exec $zact ac switch-mode pane
+bindsym $modZ+t exec $zact ac switch-mode tab
+bindsym $modZ+m exec $zact ac switch-mode move
+bindsym $modZ+s exec $zact ac switch-mode search
+bindsym $modZ+o exec $zact ac switch-mode session
+bindsym $modZ+g exec $zact ac switch-mode locked
 
 bindsym $modZ+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit Zellij session?' -B 'Yes, exit i3' 'zellij k'"
 # ##############################

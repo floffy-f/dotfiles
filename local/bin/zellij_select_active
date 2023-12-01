@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+zellij_select_session | sed -n '/EXITED/!p'
