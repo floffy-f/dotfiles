@@ -1,0 +1,17 @@
+#!/usr/bin/bash
+IN=$(cat <&0)
+FOUND=$(zellij ls | grep $IN)
+ACTIVES=$(echo $FOUND | sed -n '/EXITED/!p' | wc -l)
+EXITED=$(echo $FOUND | sed -n '/EXITED/p' | wc -l)
+if [ $ACTIVES -lt 1 ]
+then
+	echo "No ACTIVE session"
+else
+	zellij kill-session $IN
+fi
+if [ $EXITED -lt 1 ]
+then
+	echo "No EXITED session"
+else
+	zellij delete-session $IN
+fi
